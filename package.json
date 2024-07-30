@@ -1,0 +1,25 @@
+{
+  "name": "api-express-backend",
+  "version": "1.0.0",
+  "description": "API Node & Express - BACK-END 1º Semestre de 2024 IFSP",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guibs27/api-express-backend.git"
+  },
+  "keywords": [
+    "api",
+    "express",
+    "zod",
+    "mvc"
+  ],
+  "author": "Guilherme Byz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guibs27/api-express-backend/issues"
+  },
+  "homepage": "https://github.com/Guibs27/api-express-backend#readme"
+}
