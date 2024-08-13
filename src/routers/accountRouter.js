@@ -1,24 +1,16 @@
 import express from 'express'
+import createController from '../controllers/account/createController.js';
+import listController from '../controllers/account/listController.js';
+import searchController from '../controllers/account/searchController.js';
+import updateController from '../controllers/account/updateController.js';
+import removeController from '../controllers/account/removeController.js';
+
 const router = express.Router()
 
-router.post('/', (req, res) => {
-    res.json({message: "Rota de POST account"});
-});
-
-router.get('/list', (req, res) => {
-    res.json({message: "Rota de GET account list"});
-});
-
-router.get('/:id', (req, res) => {
-    res.json({message: "Rota de GET account ID"});
-});
-
-router.put('/:id', (req, res) => {
-    res.json({message: "Rota de PUT account"});
-});
-
-router.delete('/:id', (req, res) => {
-    res.json({message: "Rota de DELETE account"});
-});
+router.post('/', createController);
+router.get('/list', listController);
+router.get('/:id', searchController);
+router.put('/:id', updateController);
+router.delete('/:id', removeController);
 
 export default router

@@ -1,16 +1,12 @@
 import express from 'express'
+import signupController from '../controllers/auth/signupController.js';
+import loginController from '../controllers/auth/loginController.js';
+import logoutController from '../controllers/auth/logoutController.js';
+
 const router = express.Router()
 
-router.post('/signup', (req, res) => {
-    res.json({message: "Rota de POST auth/signup"});
-});
-
-router.post('/login', (req, res) => {
-    res.json({message: "Rota de POST auth/login"});
-});
-
-router.post('/logout', (req, res) => {
-    res.json({message: "Rota de POST auth/logout"});
-});
+router.post('/signup', signupController);
+router.post('/login', loginController);
+router.post('/logout', logoutController);
 
 export default router
