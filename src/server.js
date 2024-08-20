@@ -8,6 +8,6 @@ const app = express()
 app.use('/auth', authRouter)
 app.use('/account', accountRouter)
 
-app.listen(3000, () => {
-    console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${HOST}:${PORT}`)
+app.listen(PORT, () => {
+        console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${ENVIRONMENT == 'production' ? HOST : HOST+':'+PORT}`)
 });
