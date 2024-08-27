@@ -16,3 +16,12 @@ export const getByIdAccount = async (id) => {
   return account
 }
 
+export const deleteAccountById = async (id) => {
+  const account = await prisma.account.delete({
+    where: {
+      id
+    }
+  })
+  return account
+}
+
