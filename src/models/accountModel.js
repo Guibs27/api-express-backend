@@ -32,3 +32,13 @@ export const deleteAccountById = async (id) => {
   return account
 }
 
+export const updateAccount = async (account) => {
+  const result = await prisma.account.update({
+    data: account,
+    where: {
+      id: account.id
+    }
+  })
+  return result
+}
+

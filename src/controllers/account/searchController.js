@@ -1,7 +1,6 @@
 import { getByIdAccount } from "../../models/accountModel.js";
 
 const search = async (req, res) => {
-  // const id = req.params.id
   const { id } = req.params
   const account = await getByIdAccount(+id)
 
@@ -10,7 +9,7 @@ const search = async (req, res) => {
       error: `Conta com ID ${id} não encontrado.`
     })
 
-  res.json({sucess: "Conta encontrada com sucesso.",
+  res.json({sucess: "Conta encontrada com sucesso!",
     account
   });
 }
