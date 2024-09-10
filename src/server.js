@@ -4,10 +4,12 @@ import authRouter from './routers/authRouter.js'
 import accountRouter from './routers/accountRouter.js'
 import welcome from './controllers/welcome.js'
 import errorHandler from './middlewares/errorHandler.js'
+import logger from './middlewares/logger.js'
 import { ENVIRONMENT, PORT, HOST } from './config.js'
 
 const app = express()
 
+app.use(logger)
 app.use(cors())
 app.use(express.json())
 
