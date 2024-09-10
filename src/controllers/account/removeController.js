@@ -1,18 +1,23 @@
 import { deleteAccountById } from "../../models/accountModel.js";
 
-const remove = async (req, res) => {
+const remove = async (req, res, next) => {
   const { id } = req.params
-  const account = await deleteAccountById(+id)
 
-  if(!account)
-   return res.status(404).json({
-      error: `Conta com ID ${id} não encontrado.`
+  try {
+    const account = await deleteAccountById(+id)
+
+    return res.json({
+      success: "Conta apagada com sucesso!",
+      account
     })
-  
-  res.json({
-    message: "Conta apagada com sucesso!",
-    account
-  });
+  } catch (error) {
+    if (error?.code === 'P2025')
+      return res.status(404).json({
+        error: `Conta com ID ${id} não encontrado.`
+      })
+
+    next(error)
+  }
 }
 
 export default remove

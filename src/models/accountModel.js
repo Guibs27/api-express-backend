@@ -10,7 +10,7 @@ export const listAccounts = async () => {
 export const getByIdAccount = async (id) => {
   const account = await prisma.account.findUnique({
     where: {
-      id
+      id: id
     }
   })
   return account
