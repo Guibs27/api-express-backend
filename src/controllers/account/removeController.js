@@ -1,19 +1,27 @@
-import { deleteAccountById } from "../../models/accountModel.js";
+import { deleteAccountById, accountValidateId } from "../../models/accountModel.js"
 
 const remove = async (req, res, next) => {
   const { id } = req.params
 
   try {
-    const account = await deleteAccountById(+id)
+    const accountValidated = accountValidateId(+id)
+
+    if (accountValidated?.error)
+      return res.status(401).json({
+        error: "Erro ao deletar um serviço!",
+        fieldErrors: accountValidated.error.flatten().fieldErrors
+      })
+
+    const account = await deleteAccount(accountValidated.data.id)
 
     return res.json({
-      success: "Conta apagada com sucesso!",
+      success: "Conta removida com sucesso!",
       account
     })
   } catch (error) {
     if (error?.code === 'P2025')
       return res.status(404).json({
-        error: `Conta com ID ${id} não encontrado.`
+        error: `Conta com o id ${id}, não encontrado!`
       })
 
     next(error)

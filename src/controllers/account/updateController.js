@@ -1,15 +1,23 @@
-import { updateAccount } from "../../models/accountModel.js";
+import { updateAccount, accountValidateToUpdate } from "../../models/accountModel.js";
 
 const update = async (req, res, next) => {
-  const {id} = req.params
+  const { id } = req.params
 
   try {
     const account = req.body
     account.id = +id
 
-    const result = await updateAccount(account)
+    const accountValidated = accountValidateToUpdate(account)
 
-    if(!result)
+    if (accountValidated?.error)
+      return res.status(401).json({
+        error: "Erro ao atualizar a conta!",
+        fieldErrors: accountValidated.error.flatten().fieldErrors
+      })
+
+    const result = await update(accountValidated.data)
+
+    if (!result)
       return res.status(401).json({
         error: 'Erro ao atualizar conta.'
       })
@@ -18,15 +26,15 @@ const update = async (req, res, next) => {
       sucess: "Conta atualizada com sucesso!",
       account: result
     })
-  } catch(error) {
-    if(error?.code === 'P2025')
+  } catch (error) {
+    if (error?.code === 'P2025')
       return res.status(404).json({
         error: `Conta com ID ${id} não encontrado.`
       })
 
     next(error)
   }
- 
+
 }
 
 export default update
