@@ -8,11 +8,11 @@ const remove = async (req, res, next) => {
 
     if (accountValidated?.error)
       return res.status(401).json({
-        error: "Erro ao deletar um serviço!",
+        error: "Erro ao deletar um serviço.",
         fieldErrors: accountValidated.error.flatten().fieldErrors
       })
 
-    const account = await deleteAccount(accountValidated.data.id)
+    const account = await deleteAccountById(accountValidated.data.id)
 
     return res.json({
       success: "Conta removida com sucesso!",
@@ -21,7 +21,7 @@ const remove = async (req, res, next) => {
   } catch (error) {
     if (error?.code === 'P2025')
       return res.status(404).json({
-        error: `Conta com o id ${id}, não encontrado!`
+        error: `Conta com o id ${id}, não encontrado.`
       })
 
     next(error)

@@ -47,7 +47,7 @@ export const accountValidateToCreate = (account) => {
 }
 
 export const accountValidateToUpdate = (account) => {
-  return partialAccountSchema.safeParse(account)
+  return accountSchema.safeParse(account)
 }
 
 export const accountValidateId = (id) => {

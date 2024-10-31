@@ -7,7 +7,7 @@ const getById = async (req, res, next) => {
 
     if (accountValidated?.error)
       return res.status(401).json({
-        error: "Erro ao buscar um serviço!",
+        error: "Erro ao buscar um serviço.",
         fieldErrors: accountValidated.error.flatten().fieldErrors
       })
 
@@ -15,7 +15,7 @@ const getById = async (req, res, next) => {
 
     if (!account)
       return res.status(404).json({
-        error: `Conta com o id ${id}, não encontrado!`
+        error: `Conta com o id ${id}, não encontrado.`
       })
 
     return res.json({

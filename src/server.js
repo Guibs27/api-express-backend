@@ -21,5 +21,5 @@ app.use('/account', accountRouter)
 app.use(errorHandler)
 
 app.listen(PORT, () => {
-        console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${ENVIRONMENT == 'production' ? HOST : HOST+':'+PORT}`)
+  console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${ENVIRONMENT == 'production' ? HOST : HOST+':'+PORT}`)
 });

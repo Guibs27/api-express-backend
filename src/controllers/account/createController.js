@@ -5,7 +5,7 @@ const create = async (req, res, next) => {
     const account = req.body
     const accountValidated = accountValidateToCreate(account)
 
-    if (accountValidated?.success)
+    if (accountValidated?.error)
       return res.status(401).json({
         error: 'Erro ao criar conta.',
         fieldErrors: accountValidated.error.flatten().fieldErrors

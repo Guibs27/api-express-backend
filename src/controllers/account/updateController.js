@@ -2,6 +2,9 @@ import { updateAccount, accountValidateToUpdate } from "../../models/accountMode
 
 const update = async (req, res, next) => {
   const { id } = req.params
+  if (!id) {
+    return res.status(400).json({ error: 'ID do parâmetro é obrigatório' });
+  }
 
   try {
     const account = req.body
@@ -11,11 +14,11 @@ const update = async (req, res, next) => {
 
     if (accountValidated?.error)
       return res.status(401).json({
-        error: "Erro ao atualizar a conta!",
+        error: "Erro ao atualizar a conta.",
         fieldErrors: accountValidated.error.flatten().fieldErrors
       })
 
-    const result = await update(accountValidated.data)
+    const result = await updateAccount(accountValidated.data)
 
     if (!result)
       return res.status(401).json({
